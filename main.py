@@ -1,17 +1,13 @@
 import os
 import io
-import logging
-from flask import Flask, request, send_from_directory, render_template, abort, jsonify, Response
-from flask_restful import Api, Resource
-
-from flask_restful_swagger import swagger
-
 import key
-from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-
+import logging
 import pandas as pd
+from matplotlib.figure import Figure
+from flask_restful import Api, Resource
+from flask_restful_swagger import swagger
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from flask import Flask, request, send_from_directory, render_template, abort, jsonify, Response
 
 
 app = Flask(__name__)
