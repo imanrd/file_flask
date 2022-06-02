@@ -23,11 +23,6 @@ app.config['SESSION_TYPE'] = 'filesystem'
 api = swagger.docs(Api(app), apiVersion='1', api_spec_url='/doc')
 
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
 def log_creator(name, file_name, level=logging.INFO):
     logger = logging.getLogger(name)
     logger.setLevel(level)
@@ -43,11 +38,6 @@ def log_creator(name, file_name, level=logging.INFO):
 
 
 code_logger = log_creator("code_info", "code_log")
-
-
-@app.route('/flash')
-def index():
-    return render_template('index.html')
 
 
 class FileTasks(Resource):
@@ -138,7 +128,6 @@ class Diagram(Resource):
 
 
 # There must be a way to handle empty file names
-
 api.add_resource(FileTasks, '/file/<string:name>', methods=['GET', 'POST', 'DELETE'])
 
 api.add_resource(ListFiles, '/list')
