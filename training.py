@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+from sklearn import linear_model
 
 
 class TrainMethods:
@@ -12,7 +12,6 @@ class TrainMethods:
         self.column = column
 
     def regression(self):
-        from sklearn import linear_model
         df = self.data.dropna()
         msk = np.random.rand(len(df)) < 0.8
         train = df[msk]

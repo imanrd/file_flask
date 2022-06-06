@@ -23,7 +23,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 api = swagger.docs(Api(app), apiVersion='1', api_spec_url='/doc')
 
 
-def log_creator(name, file_name, level=logging.INFO):
+def log_creator(name, file_name, level=logging.DEBUG):
     logger = logging.getLogger(name)
     logger.setLevel(level)
 
@@ -37,7 +37,7 @@ def log_creator(name, file_name, level=logging.INFO):
     return logger
 
 
-code_logger = log_creator("code_info", "code_log")
+logger = log_creator("code_info", "code_log")
 
 
 class FileTasks(Resource):
@@ -45,7 +45,7 @@ class FileTasks(Resource):
     @swagger.model
     @swagger.operation(notes="Upload a file")
     def post(self, name):
-        code_logger.info(f"Upload '{name}' file")
+        logger.info(f"Upload '{name}' file")
         if "/" in name:
             abort(400, "no subdirectories allowed")
         if name != '':
@@ -53,21 +53,23 @@ class FileTasks(Resource):
                 fp.write(request.data)
             response = {}, 201
         else:
-            code_logger.warning("Error in upload!")
+            logger.warning("Error in upload!")
             response = {}, 400
         return response
 
     @swagger.model
     @swagger.operation(notes="download a file")
-    def get(self, name):
-        code_logger.info(f"Download '{name}' file")
+    def get(self, name=None):
+        if not name:
+            raise Exception("Name is required!")
+        logger.info(f"Download '{name}' file")
         path = os.path.join(app.config['UPLOAD_FOLDER'], name)
         if os.path.exists(path):
             try:
                 return send_from_directory(app.config["UPLOAD_FOLDER"], name)
             except Exception as ex:
                 print(ex)
-                code_logger.exception("Error in download!")
+                logger.exception("Error in download!")
                 return {}, 500
         else:
             return {}, 404
@@ -75,7 +77,7 @@ class FileTasks(Resource):
     @swagger.model
     @swagger.operation(notes="Delete a file")
     def delete(self, name):
-        code_logger.info(f"Delete '{name}' file")
+        logger.info(f"Delete '{name}' file")
         try:
             path = os.path.join(app.config['UPLOAD_FOLDER'], name)
             if os.path.exists(path):
@@ -85,7 +87,7 @@ class FileTasks(Resource):
                 response = {}, 404
         except Exception as ex:
             print(ex)
-            code_logger.exception("Error in delete!")
+            logger.exception("Error in delete!")
             response = {}, 500
         return response
 
@@ -103,7 +105,7 @@ class ListFiles(Resource):
             counter += 1
             dic_of_files.update({counter: item})
 
-        code_logger.info("List Files")
+        logger.info("List Files")
         return jsonify(dic_of_files)
 
 
@@ -135,4 +137,5 @@ api.add_resource(ListFiles, '/list')
 api.add_resource(Diagram, '/draw/<string:name>/<string:xo>/<string:yc>')
 
 if __name__ == '__main__':
+    logger.info("System Started!")
     app.run(debug=True)
