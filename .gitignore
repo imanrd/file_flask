@@ -146,6 +146,10 @@ keys.py
 .~*
 new
 *.pub
-data
-data/*
+api/data
+api/data/*
 __pycache__/*
+bin
+lib64
+share
+templates

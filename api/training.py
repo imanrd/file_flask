@@ -37,7 +37,7 @@ class TrainMethods:
 
 
 if __name__ == '__main__':
-    kline = pd.read_csv('./data/2h_31 Jan, 2021_7 Feb, 2022.csv', index_col='Date')
+    kline = pd.read_csv('./data/30m_31_Jan_2021_7_Feb_2022.csv', index_col='Date')
 
     print(kline.columns.tolist())
     trainer = TrainMethods(kline, 'regression', 'Close')
