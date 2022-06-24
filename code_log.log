@@ -64,3 +64,37 @@
 2022-06-15 10:19:58,088 - code_info - INFO - System Started!
 2022-06-15 11:32:18,751 - code_info - INFO - List Files
 2022-06-15 11:34:33,784 - code_info - INFO - List Files
+2022-06-23 17:59:03,285 - code_info - INFO - List Files
+2022-06-23 18:07:42,908 - code_info - INFO - List Files
+2022-06-23 18:07:44,919 - code_info - INFO - List Files
+2022-06-23 18:08:33,776 - code_info - INFO - List Files
+2022-06-23 22:53:22,507 - code_info - INFO - List Files
+2022-06-23 22:54:12,774 - code_info - INFO - Download '"3m_31_Jan_2021_7_Feb_2022.csv"' file
+2022-06-23 23:02:31,499 - code_info - INFO - Delete '"3m_31_Jan_2021_7_Feb_2022.csv"' file
+2022-06-23 23:03:36,277 - code_info - INFO - Delete '"3m_31_Jan_2021_7_Feb_2022.csv"' file
+2022-06-23 23:06:43,629 - code_info - INFO - Delete '"3m_31_Jan_2021_7_Feb_2022.csv"' file
+2022-06-23 23:06:51,046 - code_info - INFO - Delete '"3m_31_Jan_2021_7_Feb_2022.csv"' file
+2022-06-23 23:10:51,420 - code_info - INFO - List Files
+2022-06-23 23:11:06,651 - code_info - INFO - Upload '"3m_31_Jan_2021_7_Feb_2022.csv"' file
+2022-06-23 23:11:31,043 - code_info - INFO - Delete '"3m_31_Jan_2021_7_Feb_2022.csv"' file
+2022-06-23 23:11:50,035 - code_info - INFO - Delete '"3m_31_Jan_2021_7_Feb_2022.csv"' file
+2022-06-23 23:12:40,558 - code_info - INFO - Delete '3m_31_Jan_2021_7_Feb_2022.csv' file
+2022-06-24 11:36:17,182 - code_info - INFO - List Files
+2022-06-24 11:43:29,820 - code_info - INFO - Upload '15m_31_Jan_2021_7_Feb_2022.csv' file
+2022-06-24 11:44:20,599 - code_info - INFO - Upload '156m_31_Jan_2021_7_Feb_2022.csv' file
+2022-06-24 11:48:05,518 - code_info - INFO - Upload '156m_31_Jan_2021_7_Feb_2022.csv' file
+2022-06-24 11:49:23,386 - code_info - INFO - Download '2432554.csv' file
+2022-06-24 11:50:44,433 - code_info - INFO - Download '9827364.csv' file
+2022-06-24 12:29:01,030 - code_info - INFO - Upload 'UPLOADS_PATH' file
+2022-06-24 12:29:58,561 - code_info - INFO - Download '9827364.csv' file
+2022-06-24 12:32:50,906 - code_info - INFO - Upload 'UPLOADS_PATH' file
+2022-06-24 12:45:38,205 - code_info - INFO - Upload 'UPLOADS_PATH' file
+2022-06-24 12:46:46,298 - code_info - INFO - Upload 'UPLOADS_PATH' file
+2022-06-24 12:55:57,555 - code_info - INFO - Upload 'UPLOADS_PATH' file
+2022-06-24 13:00:26,717 - code_info - INFO - Upload 'UPLOADS_PATH' file
+2022-06-24 13:00:26,717 - code_info - WARNING - Error in upload! Did not find upload folder
+2022-06-24 13:06:14,143 - code_info - INFO - System Started!
+2022-06-24 13:06:14,960 - code_info - INFO - System Started!
+2022-06-24 13:06:32,077 - code_info - INFO - Upload 'dsfgdsfg' file
+2022-06-24 13:06:32,077 - code_info - WARNING - Error in upload! Did not find upload folder
+2022-06-24 13:08:55,935 - code_info - INFO - System Started!

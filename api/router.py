@@ -1,7 +1,6 @@
 import os
 import io
-from api import key, app
-import logging
+from api import key, app, logger
 import pandas as pd
 from flasgger import Swagger
 from matplotlib.figure import Figure
@@ -18,7 +17,7 @@ app.config['UPLOAD_FOLDER'] = UPLOADS_PATH
 app.secret_key = key.secret_key
 app.config['SESSION_TYPE'] = 'filesystem'
 
-
+'''
 def log_creator(name, file_name, level=logging.DEBUG):
     logger = logging.getLogger(name)
     logger.setLevel(level)
@@ -34,6 +33,7 @@ def log_creator(name, file_name, level=logging.DEBUG):
 
 
 logger = log_creator("code_info", "code_log")
+'''
 
 
 def non_empty_string(s):
@@ -66,14 +66,20 @@ def post_file(name):
         description: File is uploaded
         """
     logger.info(f"Upload '{name}' file")
+    path = os.path.join(app.config['UPLOAD_FOLDER'], name)
     if "/" in name:
         abort(400, "no subdirectories allowed")
     if name != '':
-        with open(os.path.join(UPLOAD_FOLDER, name), "wb") as fp:
-            fp.write(request.data)
-        response = {}, 201
+        try:
+            with open(path, "wb") as fp:
+                fp.write(request.data)
+        except FileNotFoundError:
+            logger.warning("Error in upload! Did not find upload folder")
+            response = {}, 400
+        else:
+            response = {}, 201
     else:
-        logger.warning("Error in upload!")
+        logger.warning("Error in upload! File name can't be empty!")
         response = {}, 400
     return response
 
@@ -111,6 +117,7 @@ def get_file(name=None):
             logger.exception("Error in download!")
             return {}, 500
     else:
+        print(path)
         return {}, 404
 
 
@@ -140,6 +147,7 @@ def delete_file(name):
     logger.info(f"Delete '{name}' file")
     try:
         path = os.path.join(app.config['UPLOAD_FOLDER'], name)
+        print(path)
         if os.path.exists(path):
             os.remove(path)
             response = {}, 200
@@ -164,7 +172,7 @@ def list_file():
     """
     list_of_files, dic_of_files = [], {}
     counter = 0
-    for (_, _, filenames) in os.walk('./data'):
+    for (_, _, filenames) in os.walk('./api/data'):
         list_of_files.extend(filenames)
     for item in list_of_files:
         counter += 1
@@ -204,7 +212,10 @@ def draw(name, x, y):
       200:
         description: Draw diagram
         """
-    kline = pd.read_csv(f"data/{name}")
+    try:
+        kline = pd.read_csv(f"api/data/{name}")
+    except FileNotFoundError:
+        return {}, 404
     try:
         X = kline[x][-10:].tolist()
         Y = kline[y][-10:].tolist()
@@ -220,5 +231,5 @@ def draw(name, x, y):
 
 
 if __name__ == '__main__':
-    logger.info("System Started!")
+
     app.run(debug=True)
