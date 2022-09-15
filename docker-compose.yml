@@ -1,0 +1,12 @@
+services:
+  web:
+    container_name: ml_web
+    image: ml_flask:1.0
+    ports:
+      - "5000:80"
+#    volumes:
+#      - ./app:/app
+#    environment:
+#      - FLASK_APP=app/main.py
+#      - FLASK_DEBUG=1
+#      - RUN=flask run --host=0.0.0.0 --port=80
