@@ -46,7 +46,7 @@ def non_empty_string(s):
 def post_file(name):
     """
     Upload a file
-    This is using docstrings for specifications.
+    This is using docstrings for specifications
     ---
     parameters:
       - name: name
